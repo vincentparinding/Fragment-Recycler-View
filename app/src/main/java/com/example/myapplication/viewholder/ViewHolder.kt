@@ -11,8 +11,14 @@ import com.example.myapplication.R
  * Created by albert.lukito on 16/11/20.
  */
 
-class ViewHolder1(private val view: View) : RecyclerView.ViewHolder(view) {
-    fun bind(pair: Pair<String, Fragment>, idContainer: Int) {
+class ViewHolder1(
+    private val view: View,
+    private val pair: Pair<String, Fragment>,
+    private val idContainer: Int
+) :
+    RecyclerView.ViewHolder(view) {
+
+    fun bind() {
         val container = view.findViewById<FragmentContainerView>(R.id.fragment_container_1)
         val fragmentManager = (view.context as? AppCompatActivity)?.supportFragmentManager
         container?.id = idContainer

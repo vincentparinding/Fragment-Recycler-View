@@ -13,13 +13,17 @@ import com.example.myapplication.viewholder.ViewHolder1
 class TestAdapter : ListAdapter<Pair<String, Fragment>, ViewHolder1>(DiffUtilCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder1, position: Int) {
-        holder.bind(getItem(position), position + 1)
+        holder.bind()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder1 =
         ViewHolder1(
-            LayoutInflater.from(parent.context).inflate(R.layout.view_holder_1, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.view_holder_1, parent, false),
+            getItem(viewType),
+            viewType + 1
         )
+
+    override fun getItemViewType(position: Int): Int = position
 
     class DiffUtilCallback : DiffUtil.ItemCallback<Pair<String, Fragment>>() {
         override fun areItemsTheSame(
